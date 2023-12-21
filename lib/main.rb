@@ -4,9 +4,9 @@ words = dictionary.select do |word|
     word.length > 5 && word.length <= 12
 end    
 
-word = words.sample
+untidy_word = words.sample 
+word = untidy_word[0..untidy_word.length-2]
 
-puts word
 
 class Game
     def initialize(word)
@@ -19,14 +19,15 @@ class Game
     def play
         puts "The word is #{@word.length} letters long"
         puts "Enter a letter:"
+        p @word
         letter = gets.chomp.to_s
         @guess.push(letter)
+        check_game_over
         check_letter_in_word(letter)
         
     end
     def check_letter_in_word(letter)
-        check_game_over
-        
+          
         if @game_over
             puts "The correct word is : #{@word}"
         else 
@@ -40,7 +41,14 @@ class Game
             else 
                 puts "Your guess is wrong. Hint: #{@guessed_word.join("")}"
             end
-            play 
+
+            check_game_over
+            
+            if @game_over
+                puts "Thats the correct word. You've Won!"
+            else
+                play
+            end        
         end      
     end
 
