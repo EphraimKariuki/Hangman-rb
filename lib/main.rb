@@ -19,7 +19,6 @@ class Game
     def play
         puts "The word is #{@word.length} letters long"
         puts "Enter a letter:"
-        p @word
         letter = gets.chomp.to_s
         @guess.push(letter)
         check_game_over
@@ -43,7 +42,7 @@ class Game
             end
 
             check_game_over
-            
+
             if @game_over
                 puts "Thats the correct word. You've Won!"
             else
@@ -69,5 +68,6 @@ class Game
 end 
 
 #Example usage:
+
 game = Game.new(word)
 game.play
